@@ -1,14 +1,13 @@
 class Grid {
     constructor() {
         this.cells = [];
-        this.padding = 5;
+        this.padding = 2;
         this.cellSize = 50;
         this.xDiam = 0;
         this.yDiam = 0;
     }
 
-    initialize(w, h) 
-    {   //  this method should initialize grid based on
+    initialize(w, h) {   //  this method should initialize grid based on
         //  canvas size and diameter of single cell
 
         let size = this.cellSize;
@@ -21,11 +20,11 @@ class Grid {
 
         let res = [];
 
-        for (let i = 0; i < this.yDiam; i++) {
+        for (let j = 0; j < this.yDiam; j++) {
             let tempRes = [];
 
-            for (let j = 0; j < this.xDiam; j++) {
-                tempRes.push(new Cell(j * size, i * size, size, size, "idle", i, j));
+            for (let i = 0; i < this.xDiam; i++) {
+                tempRes.push(new Cell(i * size, j * size, size, size, "idle", i, j));
             }
             res.push(tempRes);
         }
@@ -38,13 +37,45 @@ class Grid {
         //  grid for using game logic on it
     }
 
+    countNeighbours(cell) {
+        let i = cell.i;
+        let j = cell.j;
+        let count = 0;
+
+        for (let y = -1; y < 2; y++) {
+            for (let x = -1; x < 2; x++) {
+
+                if (this.cells[j + y] == undefined ||           // checks if inspecting cell 
+                    this.cells[j + y][i + x] == undefined ||    // is either outside of box
+                    (x == 0 && y == 0) ) { continue; }          // of current cell
+
+                let current = this.cells[j + y][i + x];
+                if (current.status == "active") { count++; }
+            }
+        }
+
+        return count;
+
+    }
+
+
     findCellByMousePos(x, y) {
-        let i = Math.floor(x/this.cellSize);
-        let j = Math.floor(y/this.cellSize);
-        
+        let i = Math.floor(x / this.cellSize);
+        let j = Math.floor(y / this.cellSize);
+
         //console.log(calcX, calcY);
 
+        console.log(this.cells[j][i])
         return this.cells[j][i];
+    }
+
+    updateCells() {
+        for (let j = 0; j < this.yDiam; j++) {
+            for (let i = 0; i < this.xDiam; i++) {
+                let e = this.cells[j][i];
+                e.updateColor();
+            }
+        }
     }
 
     removeHoverFromCells() {
@@ -57,7 +88,6 @@ class Grid {
                 }
             }
         }
-
     }
 
 }

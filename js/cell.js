@@ -4,9 +4,10 @@ class Cell {
         this.y = y;
         this.w = w;
         this.h = h;
-        this.i = i;
-        this.j = j;
+        this.i = i; // x index
+        this.j = j; // y index
         this.status = status; // [idle, hover, active]
+        this.toSwitch = false;
         this.color = "rgb(237, 237, 237)";
         this.updateColor();
     }
@@ -19,4 +20,11 @@ class Cell {
         //this.color = this.status ?  : "black";
     }
 
+    switch() {
+        if      (this.status == "idle")     { this.status = "active"; }
+        else if (this.status == "active")   { this.status = "idle"; }
+    }
+
+    die()   { this.status = "idle"; console.log("destroying"); }
+    live()  { this.status = "active"; console.log("creating"); }
 }

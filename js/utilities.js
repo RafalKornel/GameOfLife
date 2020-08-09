@@ -29,22 +29,11 @@ function highlight(e) {
     if (cell.status == "idle") {
         cell.status = "hover";
     }
-    /*
-        cell.updateColor();
-        draw();
-        cell.status = "idle";
-        update();
-    }
-    else {
-        cell.updateColor();
-        draw();
-    }
-    */
 
     cell.updateColor();
     draw();
     cell.status = initStatus;
-    update();
+    grid.updateCells();
     lastCell = cell;
 }
 
@@ -53,7 +42,7 @@ function removeHighlight(e) {
         lastCell.status = "idle";
         lastCell.updateColor();
     }
-    console.log(lastCell);
+    //console.log(lastCell);
     draw();
 
 }
@@ -65,13 +54,9 @@ function changeStatus(e) {
 
     let cell = grid.findCellByMousePos(x, y);
 
-    if (cell.status == "active") {
-        cell.status = "idle";
-    }
-    else //if (cell.status == "hover") {
-    {
-        cell.status = "active";
-    }
+    cell.switch();
+
     cell.updateColor();
     draw();
+    console.log(grid);
 };
