@@ -1,3 +1,4 @@
+// DOM SETUP
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -8,35 +9,56 @@ const canvRatio = initWidth / initHeight;
 const screenRatio = window.innerWidth / window.innerHeight;
 column.style.flex = Math.abs(screenRatio / canvRatio - 1);
 
-const padding = 5;
 
+// OBJECTS CONSTRUCTION
 var grid = new Grid();
-grid.initialize(initWidth, initHeight, 50);
-console.log(grid.cells);
-
-canvas.addEventListener("click", function mouseMove(e) {
-    var mouseX, mouseY;
-    var scale = initWidth / document.getElementById("canvBox").clientWidth;
+grid.initialize(initWidth, initHeight);
+var lastCell;
 
 
-    if (e.offsetX) {
-        mouseX = e.offsetX * scale;
-        mouseY = e.offsetY * scale;
+// HIGHHLIGHT AND CLICK ON CANVAS HANDLING
+canvas.addEventListener("mousemove", highlight);
+canvas.addEventListener("mouseout", removeHighlight);
+canvas.addEventListener("click", changeStatus);
+
+
+// BUTTON HANDLING -> REMOVING ALL EVENTS FROM CANVAS
+var button = document.getElementById("startButton");
+var control = false;
+
+button.addEventListener("click", function start(e) {
+
+    control = true;
+    canvas.removeEventListener("mousemove", highlight);
+    canvas.removeEventListener("mouseout", removeHighlight);
+    canvas.removeEventListener("click", changeStatus);
+    update();
+})
+
+
+
+// GAME UPDATE LOOP
+var update = function () {
+
+    if (control) {
+        console.log("running");
+        //alert("starting");
     }
-    else if (e.layerX) {
-        mouseX = e.layerX * scale;
-        mouseY = e.layerY * scale;
+
+    for (i in grid.cells) {
+        for (j in grid.cells[i]) {
+            e = grid.cells[i][j];
+            e.updateColor();
+        }
     }
-
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(mouseX-20, mouseY-20, 40, 40);
-
-    // correctly determines position of mouse
 }
-);
 
 
+// DRAW LOOP
 var draw = function () {
+
+    ctx.clearRect(0, 0, initWidth, initHeight);
+
     for (i in grid.cells) {
         for (j in grid.cells[i]) {
             e = grid.cells[i][j];
@@ -47,6 +69,14 @@ var draw = function () {
 }
 
 
-ctx.clearRect(0, 0, initWidth, initHeight);
+// MAIN GAME LOOP
+var step = function () {
 
-draw()
+    update();
+    draw();
+
+    window.requestAnimationFrame(step);
+}
+
+
+draw() // renders initial frame

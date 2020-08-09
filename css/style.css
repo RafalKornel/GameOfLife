@@ -41,14 +41,12 @@ main {
 }
 
 #upper {
-    display: flex;
     position: relative;
     flex: 1;
     background-color: blue;
 }
 
 #lower {
-    display: flex;
     position: relative;
     flex: 5;
     background-color: red;
