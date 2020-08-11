@@ -1,15 +1,16 @@
 function getMousePos(e) {
     var mouseX, mouseY;
-    var scale = initWidth / document.getElementById("canvBox").clientWidth;
+    var scaleX = canvWidth / document.getElementById("canvas").clientWidth;
+    var scaleY = canvHeight / document.getElementById("canvas").clientHeight;
 
 
     if (e.offsetX) {
-        mouseX = e.offsetX * scale;
-        mouseY = e.offsetY * scale;
+        mouseX = e.offsetX * scaleX;
+        mouseY = e.offsetY * scaleY;
     }
     else if (e.layerX) {
-        mouseX = e.layerX * scale;
-        mouseY = e.layerY * scale;
+        mouseX = e.layerX * scaleX;
+        mouseY = e.layerY * scaleY;
     }
 
     return [mouseX, mouseY];
@@ -23,6 +24,7 @@ function highlight(e) {
     let x = pos[0];
     let y = pos[1];
 
+
     let cell = grid.findCellByMousePos(x, y);
     let initStatus = cell.status;
 
@@ -35,6 +37,7 @@ function highlight(e) {
     cell.status = initStatus;
     grid.updateCells();
     lastCell = cell;
+
 }
 
 function removeHighlight(e) {
@@ -60,3 +63,18 @@ function changeStatus(e) {
     draw();
     console.log(grid);
 };
+
+
+function reloadCanvas(grid) {
+    windowWidth = canvBox.offsetWidth;
+    windowHeight = canvBox.offsetHeight;
+
+    canvWidth = Math.floor(windowWidth / cellSize) * density * cellSize;
+    canvHeight = Math.floor(windowHeight / cellSize) * density * cellSize;
+
+    ctx.canvas.width = canvWidth;
+    ctx.canvas.height = canvHeight;
+
+    grid.initialize(canvWidth, canvHeight);
+    draw();
+}

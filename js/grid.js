@@ -1,8 +1,8 @@
 class Grid {
-    constructor() {
+    constructor(s = 50) {
         this.cells = [];
         this.padding = 2;
-        this.cellSize = 50;
+        this.cellSize = s;
         this.xDiam = 0;
         this.yDiam = 0;
     }
@@ -65,7 +65,7 @@ class Grid {
 
         //console.log(calcX, calcY);
 
-        console.log(this.cells[j][i])
+        //console.log(this.cells[j][i])
         return this.cells[j][i];
     }
 
@@ -89,5 +89,4 @@ class Grid {
             }
         }
     }
-
 }

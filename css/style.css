@@ -2,7 +2,6 @@ body {
     width: 100%;
     height: 100%;
     margin: 0 0;
-    
 }
 
 main {
@@ -17,14 +16,25 @@ main {
     display: flex;
     width: 100%;
     height: 100%;
-    float: left;
 }
 
 #canvBox {
+    position: relative;
+    text-align: center;
     padding: 0 0;
     width: 100%;
     height: 100%;
-    flex: 1;
+    flex: 4;
+}
+
+#canvBox p {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+    justify-content: center;
+    z-index: 1;
 }
 
 #canvas {
@@ -37,7 +47,7 @@ main {
     display: flex;
     position: relative;
     flex-direction: column;
-    flex: 2.5;
+    flex: 1;
 }
 
 #upper {
@@ -50,4 +60,10 @@ main {
     position: relative;
     flex: 5;
     background-color: red;
+}
+
+button {
+    float: left;
+    width: 50%;
+    height: 50px;
 }
