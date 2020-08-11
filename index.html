@@ -26,7 +26,7 @@
             <div id="canvBox">
                 <canvas id="canvas" width="1000" height="1000">
                 </canvas>
-                <p id="output"></p>
+                <p id="outp1ut"></p>
 
 
             </div>
@@ -39,14 +39,19 @@
 
                 <div id="lower">
 
-                    <button type="button" class="btn btn-outline-dark" id="startButton">Start</button>
-                    <button type="button" class="btn btn-outline-dark" id="stopButton">Stop</button>
+                    <div class="container">
+                        <div class="toggle-btn" id="switch" onclick="this.classList.toggle('active')">
+                            <div class="inner-circle">
+                            </div>
+                            <p id="output">start</p>
+                        </div>
+                    </div>
 
-                    <!-- 
-                    <button id="startButton" type="button">START</button>
-                    <button id="stopButton" type="button">STOP</button>
-                    <p id="output">initalizing</p>
-                    -->
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="66.67" class="slider" id="slider">
+                        <p>density</p>
+                      </div>
+                      
                 </div>
             </div>
         </div>

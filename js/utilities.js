@@ -75,6 +75,8 @@ function reloadCanvas(grid) {
     ctx.canvas.width = canvWidth;
     ctx.canvas.height = canvHeight;
 
+    console.log(density);
+
     grid.initialize(canvWidth, canvHeight);
     draw();
 }

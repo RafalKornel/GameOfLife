@@ -59,11 +59,115 @@ main {
 #lower {
     position: relative;
     flex: 5;
-    background-color: red;
 }
+
 
 button {
     float: left;
     width: 50%;
     height: 50px;
 }
+
+
+/* SWITCH BUTTON */
+
+.container {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.toggle-btn {
+    width: 150px;
+    height: 40px;
+    background: rgba(223, 18, 18, 0.75);
+    border-radius: 30px;
+    padding: 5px;
+    transition: all 300ms ease-in-out;
+    content: "yes";
+    cursor: pointer;
+}
+
+.toggle-btn > p {
+    text-align: center;
+    position: relative;
+    top: -27px;
+    transition: all 300ms ease-in-out;
+}
+
+.toggle-btn.active > p {
+    color: white;
+}
+
+.toggle-btn > .inner-circle {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    transition: all 300ms ease-in-out;
+}
+
+.toggle-btn.active {
+    background: rgba(2, 221, 2, 0.75);
+}
+
+.toggle-btn.active > .inner-circle {
+    margin-left: 110px;
+}
+
+/* SWITCH BUTTON */
+
+
+/* SLIDER */
+
+.slidecontainer {
+    /*width: 100%; /* Width of the outside container */
+    text-align: center;
+    position: absolute;
+    height: 40px;   
+  }
+
+.slidecontainer > p {
+    color: black;
+    position: relative;
+    top: -40px;
+    z-index: -1 ;
+}
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 40px; /* Specified height */
+    background: rgb(237, 237, 237); /* Grey background */
+    border-radius: 100px;
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    padding: 5px;
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    border-radius: 50%;
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 30px; /* Set a specific slider handle width */
+    height: 30px; /* Slider handle height */
+    background: rgb(0, 0, 0); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    border-radius: 50%;
+    width: 30px; /* Set a specific slider handle width */
+    height: 30px; /* Slider handle height */
+    background: rgb(0, 0, 0); /* Green background */
+    border: none;
+    cursor: pointer; /* Cursor on hover */
+  }
+
+/* SLIDER */

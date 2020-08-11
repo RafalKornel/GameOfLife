@@ -2,13 +2,14 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var canvBox = document.getElementById("canvBox");
+var slider = document.getElementById("slider");
 
 
 var windowWidth, windowHeight;
 var canvWidth, canvHeight
 
 const cellSize = 50;
-const density = 2;
+var density = 2.5;
 
 var grid = new Grid(cellSize);
 var lastCell;
@@ -25,8 +26,23 @@ canvas.addEventListener("mousemove", highlight);
 canvas.addEventListener("mouseout", removeHighlight);
 canvas.addEventListener("click", changeStatus);
 
-window.addEventListener("resize", function() {
-    reloadCanvas(grid); });
+window.addEventListener("resize", function () {
+    reloadCanvas(grid);
+});
+
+slider.oninput = function() {
+
+    density = (slider.value / 100 + 1) * 1.5;
+    reloadCanvas(grid);
+}
+
+/*
+slider.addEventListener("mousemove", function () {
+    reloadCanvas(grid);
+    //alert(density);
+
+})
+*/
 
 
 // BUTTON HANDLING
@@ -49,12 +65,25 @@ var start = function () {
     step();
 }
 
-var startButton = document.getElementById("startButton");
-var stopButton = document.getElementById("stopButton");
+//var startButton = document.getElementById("startButton");
+//var stopButton = document.getElementById("stopButton");
 var output = document.getElementById("output");
 
-startButton.addEventListener("click", start);
-stopButton.addEventListener("click", stop);
+
+var toggleButton = document.getElementById("switch");
+toggleButton.addEventListener("click", function () {
+    if (this.classList.contains("active")) {
+        start();
+    }
+    else {
+        stop();
+    }
+})
+
+
+
+//startButton.addEventListener("click", start);
+//stopButton.addEventListener("click", stop);
 
 
 

@@ -15,8 +15,8 @@ class Grid {
         this.xDiam = Math.floor(w / size);
         this.yDiam = Math.floor(h / size);
 
-        console.log(this.xDiam, this.yDiam);
-        console.log(w, h);
+        //console.log(this.xDiam, this.yDiam);
+        //  console.log(w, h);
 
         let res = [];
 
