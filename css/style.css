@@ -134,7 +134,7 @@ main {
     }
     
     #upper > .dropleft {
-        display: block;
+        display: flex;
     }
     
     #lower {
