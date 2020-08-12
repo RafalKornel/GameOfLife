@@ -48,11 +48,13 @@ slider.oninput = function() {
 // EXAMPLES HANDLER
 exampleButtons[0].addEventListener("click", function () {
     grid.initializeFromJson(spaceship);
+    grid.updateCells();
     draw();
 })
 
 exampleButtons[exampleButtons.length-1].addEventListener("click", function() {
     grid.initializeFromJson(backup);
+    grid.updateCells();
     draw();
 })
 
