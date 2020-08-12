@@ -13,6 +13,8 @@ function getMousePos(e) {
         mouseY = e.layerY * scaleY;
     }
 
+    console.log(mouseX, mouseY);
+
     return [mouseX, mouseY];
     // correctly determines position of mouse
 };

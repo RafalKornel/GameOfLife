@@ -12,7 +12,7 @@ var windowWidth, windowHeight;
 var canvWidth, canvHeight
 
 const cellSize = 60;
-var density = 2.65;
+var density = 2;
 
 var grid = new Grid(cellSize, canvWidth, canvHeight);
 var lastCell;
@@ -48,6 +48,12 @@ slider.oninput = function() {
 // EXAMPLES HANDLER
 exampleButtons[0].addEventListener("click", function () {
     grid.initializeFromJson(spaceship);
+    grid.updateCells();
+    draw();
+})
+
+exampleButtons[1].addEventListener("click", function () {
+    grid.initializeFromJson(heart);
     grid.updateCells();
     draw();
 })
