@@ -3,25 +3,24 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var canvBox = document.getElementById("canvBox");
 var slider = document.getElementById("slider");
+var exampleButtons = document.getElementsByClassName("dropdown-item");
+var toggleButton = document.getElementById("switch");
+var output = document.getElementById("output");
 
 
 var windowWidth, windowHeight;
 var canvWidth, canvHeight
 
-const cellSize = 50;
-var density = 2.5;
+const cellSize = 60;
+var density = 2.65;
 
-var grid = new Grid(cellSize);
+var grid = new Grid(cellSize, canvWidth, canvHeight);
 var lastCell;
 const fps = 10;
-
-// initialization of grid and canvas size, based on 
-// actual canvas parent's size
-reloadCanvas(grid);
-draw();
+var control = false;
 
 
-// HIGHHLIGHT AND CLICK ON CANVAS HANDLING
+// BUTTON/INPUT HANDLING
 canvas.addEventListener("mousemove", highlight);
 canvas.addEventListener("mouseout", removeHighlight);
 canvas.addEventListener("click", changeStatus);
@@ -30,47 +29,6 @@ window.addEventListener("resize", function () {
     reloadCanvas(grid);
 });
 
-slider.oninput = function() {
-
-    density = (slider.value / 100 + 1) * 1.5;
-    reloadCanvas(grid);
-}
-
-/*
-slider.addEventListener("mousemove", function () {
-    reloadCanvas(grid);
-    //alert(density);
-
-})
-*/
-
-
-// BUTTON HANDLING
-var control = false;
-
-var stop = function () {
-    output.innerHTML = "paused";
-    control = false;
-    canvas.addEventListener("mousemove", highlight);
-    canvas.addEventListener("mouseout", removeHighlight);
-    canvas.addEventListener("click", changeStatus);
-}
-var start = function () {
-    control = true;
-    output.innerHTML = "running";
-    console.log("running");
-    canvas.removeEventListener("mousemove", highlight);
-    canvas.removeEventListener("mouseout", removeHighlight);
-    canvas.removeEventListener("click", changeStatus);
-    step();
-}
-
-//var startButton = document.getElementById("startButton");
-//var stopButton = document.getElementById("stopButton");
-var output = document.getElementById("output");
-
-
-var toggleButton = document.getElementById("switch");
 toggleButton.addEventListener("click", function () {
     if (this.classList.contains("active")) {
         start();
@@ -80,12 +38,26 @@ toggleButton.addEventListener("click", function () {
     }
 })
 
+slider.oninput = function() {
+
+    density = (slider.value / 100 + 1) * 1.5;
+    reloadCanvas(grid);
+}
 
 
-//startButton.addEventListener("click", start);
-//stopButton.addEventListener("click", stop);
+// EXAMPLES HANDLER
+exampleButtons[0].addEventListener("click", function () {
+    grid.initializeFromJson(spaceship);
+    draw();
+})
+
+exampleButtons[exampleButtons.length-1].addEventListener("click", function() {
+    grid.initializeFromJson(backup);
+    draw();
+})
 
 
+reloadCanvas(grid); // loads canvas for the first time
 
 setInterval(step, 1000 / fps);
 

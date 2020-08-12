@@ -1,19 +1,21 @@
 class Grid {
-    constructor(s = 50) {
+    constructor(s = 50, w, h) {
         this.cells = [];
         this.padding = 2;
         this.cellSize = s;
         this.xDiam = 0;
         this.yDiam = 0;
+        this.w = w;
+        this.h = h;
     }
 
-    initialize(w, h) {   //  this method should initialize grid based on
+    initialize() {   //  this method should initialize grid based on
         //  canvas size and diameter of single cell
 
         let size = this.cellSize;
 
-        this.xDiam = Math.floor(w / size);
-        this.yDiam = Math.floor(h / size);
+        this.xDiam = Math.floor(this.w / size);
+        this.yDiam = Math.floor(this.h / size);
 
         //console.log(this.xDiam, this.yDiam);
         //  console.log(w, h);
@@ -32,10 +34,33 @@ class Grid {
         this.cells = res;
     }
 
-    initializeFromMouse() {
-        //  this method should set clicked cells, preparing 
-        //  grid for using game logic on it
+
+    initializeFromJson(str) {
+        this.initialize();
+        let obj = JSON.parse(str);
+        console.log(obj);
+        for (let j = 0; j < this.yDiam; j++) {
+
+            for (let i = 0; i < this.xDiam; i++) {
+                let status = obj[j][i] == 1 ? "active" : "idle";
+                this.cells[j][i].status = status;
+                //new Cell(i * size, j * size, size, size, "idle", i, j));
+            }
+        }
     }
+
+    exportToJson() {
+        var res = [];
+        for (let j in this.cells) {
+            let subRes = [];
+            for (let i in this.cells[j]){
+                subRes.push(this.cells[j][i].status == "active" ? 1 : 0 );
+            }
+            res.push(subRes);
+        }
+        return JSON.stringify(res);
+    }
+
 
     countNeighbours(cell) {
         let i = cell.i;

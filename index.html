@@ -34,10 +34,26 @@
             <div id="column">
 
                 <div id="upper">
-                    <p> this sould be in upper right corner </p>
-                </div>
 
-                <div id="lower">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="76.67" class="slider" id="slider">
+                        <p>density</p>
+                    </div>
+
+
+                    <!-- Default dropleft button -->
+                    <div class="btn-group dropleft" id="dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            presets
+                        </button>
+                        <div class="dropdown-menu">
+                            <!-- Dropdown menu links -->
+                            <button class="dropdown-item" type="button">spaceship</button>
+                            <button class="dropdown-item" type="button">previous</button>
+                        </div>
+                    </div>
+
 
                     <div class="container">
                         <div class="toggle-btn" id="switch" onclick="this.classList.toggle('active')">
@@ -47,15 +63,18 @@
                         </div>
                     </div>
 
-                    <div class="slidecontainer">
-                        <input type="range" min="1" max="100" value="66.67" class="slider" id="slider">
-                        <p>density</p>
-                      </div>
-                      
+                </div>
+
+                <div id="lower">
+
+                    <p> this sould be in lower right corner </p>
+
+
                 </div>
             </div>
         </div>
 
+        <script src="js/examples.js"></script>
         <script src="js/logic.js"></script>
         <script src="js/utilities.js"></script>
         <script src="js/cell.js"></script>

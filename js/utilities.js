@@ -69,6 +69,13 @@ function reloadCanvas(grid) {
     windowWidth = canvBox.offsetWidth;
     windowHeight = canvBox.offsetHeight;
 
+    console.log(windowWidth, windowHeight, windowHeight*windowWidth);
+    
+    if (windowWidth * windowHeight > 4e6) {
+        windowWidth *= 0.75;    // very nasty hack to prevent
+        windowHeight *= 0.75;   // from oversizing grid
+    }
+
     canvWidth = Math.floor(windowWidth / cellSize) * density * cellSize;
     canvHeight = Math.floor(windowHeight / cellSize) * density * cellSize;
 
@@ -77,6 +84,27 @@ function reloadCanvas(grid) {
 
     console.log(density);
 
-    grid.initialize(canvWidth, canvHeight);
+    grid.w = canvWidth; 
+    grid.h = canvHeight;
+    grid.initialize();
     draw();
+}
+
+var stop = function () {
+    output.innerHTML = "paused";
+    control = false;
+    canvas.addEventListener("mousemove", highlight);
+    canvas.addEventListener("mouseout", removeHighlight);
+    canvas.addEventListener("click", changeStatus);
+}
+
+var start = function () {
+    control = true;
+    output.innerHTML = "running";
+    console.log("running");
+    canvas.removeEventListener("mousemove", highlight);
+    canvas.removeEventListener("mouseout", removeHighlight);
+    canvas.removeEventListener("click", changeStatus);
+    backup = grid.exportToJson();
+    step();
 }
