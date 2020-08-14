@@ -6,7 +6,7 @@ var update = function () {
 
             let current = grid.cells[j][i];
             let neighbours = grid.countNeighbours(current);
-            if (neighbours != 0) { console.log(neighbours); }
+            //if (neighbours != 0) { console.log(neighbours); }
 
             if (current.status == "active") {
                 if (neighbours <= 1) { current.toSwitch = true; }

@@ -13,9 +13,9 @@ class Cell {
     }
 
     updateColor() {
-        if      (this.status == "idle")     { this.color = "rgb(237, 237, 237)"; }
-        else if (this.status == "hover")    { this.color = "grey"; }
-        else if (this.status == "active")   { this.color = "black"; }
+        if      (this.status == "idle")     { this.color = "rgba(6,97,54, 0.2)"; }
+        else if (this.status == "hover")    { this.color = "rgba(6,97,54, 0.5)"; }
+        else if (this.status == "active")   { this.color = "rgba(6,97,54, 1.0)"; }
         else                                { this.color = "white"; }
         //this.color = this.status ?  : "black";
     }

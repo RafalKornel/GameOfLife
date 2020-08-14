@@ -13,7 +13,7 @@ function getMousePos(e) {
         mouseY = e.layerY * scaleY;
     }
 
-    console.log(mouseX, mouseY);
+    //console.log(mouseX, mouseY);
 
     return [mouseX, mouseY];
     // correctly determines position of mouse
@@ -63,7 +63,7 @@ function changeStatus(e) {
 
     cell.updateColor();
     draw();
-    console.log(grid);
+    //console.log(grid);
 };
 
 
@@ -71,8 +71,8 @@ function reloadCanvas(grid) {
     windowWidth = canvBox.offsetWidth;
     windowHeight = canvBox.offsetHeight;
 
-    console.log(windowWidth, windowHeight, windowHeight*windowWidth);
-    
+    //console.log(windowWidth, windowHeight, windowHeight*windowWidth);
+
     if (windowWidth * windowHeight > 4e6) {
         windowWidth *= 0.75;    // very nasty hack to prevent
         windowHeight *= 0.75;   // from oversizing grid
@@ -84,13 +84,14 @@ function reloadCanvas(grid) {
     ctx.canvas.width = canvWidth;
     ctx.canvas.height = canvHeight;
 
-    console.log(density);
+    //console.log(density);
 
-    grid.w = canvWidth; 
+    grid.w = canvWidth;
     grid.h = canvHeight;
     grid.initialize();
     draw();
 }
+
 
 var stop = function () {
     output.innerHTML = "paused";
@@ -98,6 +99,14 @@ var stop = function () {
     canvas.addEventListener("mousemove", highlight);
     canvas.addEventListener("mouseout", removeHighlight);
     canvas.addEventListener("click", changeStatus);
+    if (window.matchMedia("(min-width: 768px)").matches) {
+        rightBox.style.background = "rgba(250, 26, 13, 0.7)";
+        textDiv.style.background = "rgba(250, 26, 13, 0.2)";
+        textDiv.style.scrollbarColor = "rgba(250, 26, 13, 1) transparent";
+    }
+    else {
+        rightBox.style.background = "transparent";
+    }
 }
 
 var start = function () {
@@ -107,6 +116,16 @@ var start = function () {
     canvas.removeEventListener("mousemove", highlight);
     canvas.removeEventListener("mouseout", removeHighlight);
     canvas.removeEventListener("click", changeStatus);
-    backup = grid.exportToJson();
+
+    if (window.matchMedia("(min-width: 768px)").matches) {
+        rightBox.style.background = "rgba(171, 206, 48, 0.7)";
+        textDiv.style.background = "rgba(171, 206, 48, 0.2)";
+        textDiv.style.scrollbarColor = "rgba(171, 206, 48, 1) transparent";
+    }
+    else {
+        rightBox.style.background = "transparent";
+    }
+
+    examples["backup"] = grid.exportToJson();
     step();
 }

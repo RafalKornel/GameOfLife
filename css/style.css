@@ -10,6 +10,10 @@ main {
     height: 100%;
 }
 
+canvas {
+    background-color: RGBA(179,224,193, 1.0);
+}
+
 /* MOBILE */
 #root {
     top: 0;
@@ -31,7 +35,6 @@ main {
 #canvas {
     height: 100%;
     width: 100%;
-    background-color: white;
 }
 
 #column {
@@ -43,6 +46,7 @@ main {
 
 #upper {
     position: relative;
+    background: transparent;
 }
 
 #upper > .slidecontainer {
@@ -53,8 +57,13 @@ main {
     display: none;
 }
 
+#tutorial {
+    display: none;
+}
+
 #lower {
     display: none;
+    position: relative;
 }
 
 #info > button {
@@ -105,7 +114,6 @@ main {
     #canvas {
         height: 100%;
         width: 100%;
-        background-color: white;
     }
 
     #column {
@@ -113,12 +121,12 @@ main {
         position: relative;
         flex-direction: column;
         flex: 1;
+        background-color: ;
     }
 
     #upper {
         position: relative;
         flex: 1;
-        background-color: rgba(0, 202, 0, 0.3);
     }
 
     #lower {
@@ -136,6 +144,13 @@ main {
     
     #upper > .dropleft {
         display: flex;
+    }
+
+    #tutorial {
+        display: block;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 0 3%;
     }
     
     #lower {
@@ -166,7 +181,7 @@ button {
     left: 50%;
     width: 150px;
     height: 40px;
-    background: rgba(223, 18, 18, 0.75);
+    background: rgba(250, 26, 13, 1.0);
     border-radius: 30px;
     padding: 5px;
     transition: all 300ms ease-in-out;
@@ -197,7 +212,7 @@ button {
 }
 
 .toggle-btn.active {
-    background: rgba(2, 221, 2, 0.75);
+    background: rgba(171, 206, 48, 1.0);
 }
 
 .toggle-btn.active > .inner-circle {
@@ -297,4 +312,24 @@ button {
 
 .dropdown-menu {
     transition: all 300ms ease-in-out;
+}
+
+#text-div > p {
+    font-size: 1.8em;
+}
+
+#text-div {
+    position: absolute;
+    max-height: 100%;
+    overflow: scroll;
+    padding: 3% 3%;
+}
+
+#text-div > h1 {
+    font-size: 2.2em;
+}
+
+#lower a {
+    text-decoration: none;
+    color: white;
 }

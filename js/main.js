@@ -3,9 +3,12 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var canvBox = document.getElementById("canvBox");
 var slider = document.getElementById("slider");
+var dropdownButton = document.getElementById("dropdown-btn");
 var exampleButtons = document.getElementsByClassName("dropdown-item");
 var toggleButton = document.getElementById("switch");
 var output = document.getElementById("output");
+var rightBox = document.getElementById("column");
+var textDiv = document.getElementById("text-div");
 
 
 var windowWidth, windowHeight;
@@ -46,20 +49,38 @@ slider.oninput = function() {
 
 
 // EXAMPLES HANDLER
-exampleButtons[0].addEventListener("click", function () {
-    grid.initializeFromJson(spaceship);
-    grid.updateCells();
-    draw();
-})
 
-exampleButtons[1].addEventListener("click", function () {
-    grid.initializeFromJson(heart);
+var buttons = document.getElementsByClassName("dropdown-item");
+for (let i = 1; i < buttons.length - 1; i++ ) {
+    let strValue = exampleButtons[i].textContent;
+
+    exampleButtons[i].addEventListener("click", function () {
+        if (strValue == "methuselah1") {
+            density = 3; 
+            slider.value = 99.99;
+        }
+        else {
+            density = 2; 
+            slider.value = 33.34;
+        }
+        reloadCanvas(grid);
+        dropdownButton.textContent = strValue;
+        grid.initializeFromJson(strValue);
+        grid.updateCells();
+        draw();
+    })
+}
+
+exampleButtons[0].addEventListener("click", function () {
+    dropdownButton.textContent = "presets";
+    grid.initialize();
     grid.updateCells();
     draw();
 })
 
 exampleButtons[exampleButtons.length-1].addEventListener("click", function() {
-    grid.initializeFromJson(backup);
+    dropdownButton.textContent = "backup";
+    grid.initializeFromJson("backup");
     grid.updateCells();
     draw();
 })
@@ -69,4 +90,5 @@ reloadCanvas(grid); // loads canvas for the first time
 
 setInterval(step, 1000 / fps);
 
+stop();
 draw() // renders initial frame

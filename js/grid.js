@@ -37,17 +37,19 @@ class Grid {
 
     initializeFromJson(str) {
         this.initialize();
-        let obj = JSON.parse(str);
+        let obj = JSON.parse(examples[str]);
         console.log(obj);
         for (let j = 0; j < this.yDiam; j++) {
+            if (obj[j] == undefined) { break; }
 
             for (let i = 0; i < this.xDiam; i++) {
+                if (obj[j][i] == undefined) { break; }
                 let status = obj[j][i] == 1 ? "active" : "idle";
                 this.cells[j][i].status = status;
                 //new Cell(i * size, j * size, size, size, "idle", i, j));
             }
         }
-    }
+    }   
 
     exportToJson() {
         var res = [];
@@ -107,7 +109,7 @@ class Grid {
         for (let j = 0; j < this.yDiam; j++) {
             for (let i = 0; i < this.xDiam; i++) {
                 let e = this.cells[j][i];
-                console.log(e);
+                //console.log(e);
                 if (e.status == "hover") {
                     e.status == "idle";
                 }

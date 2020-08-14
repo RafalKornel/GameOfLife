@@ -42,14 +42,18 @@
 
                     <!-- Default dropleft button -->
                     <div class="btn-group dropleft" id="dropdown">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn dropdown-toggle" id="dropdown-btn" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             presets
                         </button>
                         <div class="dropdown-menu">
                             <!-- Dropdown menu links -->
-                            <button class="dropdown-item" type="button">spaceship</button>
-                            <button class="dropdown-item" type="button">heart-like explosion</button>
+                            <button class="dropdown-item" type="button">empty</button>
+                            <button class="dropdown-item" type="button">glider</button>
+                            <button class="dropdown-item" type="button">lightweight spaceship</button>
+                            <button class="dropdown-item" type="button">oscillators</button>
+                            <button class="dropdown-item" type="button">methuselah1</button>
+                            <button class="dropdown-item" type="button">methuselah2</button>
                             <button class="dropdown-item" type="button">previous</button>
                         </div>
                     </div>
@@ -63,6 +67,10 @@
                         </div>
                     </div>
 
+                    <p id="tutorial">how does it work? click on cells to make them active, or 
+                                     select existing preset, then click button above and watch
+                                     simulation! </p>
+
                     <div id="info">
                         <button> i </button>
                     </div>
@@ -71,8 +79,14 @@
 
                 <div id="lower">
 
-                    <p> this sould be in lower right corner </p>
-
+                    <div id="text-div">
+                        <h1>what is <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">game of life</a>?</h1>
+                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
 
                 </div>
             </div>
