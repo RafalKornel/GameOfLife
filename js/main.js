@@ -1,14 +1,18 @@
 // DOM SETUP
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var canvBox = document.getElementById("canvBox");
-var slider = document.getElementById("slider");
-var dropdownButton = document.getElementById("dropdown-btn");
-var exampleButtons = document.getElementsByClassName("dropdown-item");
-var toggleButton = document.getElementById("switch");
-var output = document.getElementById("output");
-var rightBox = document.getElementById("column");
-var textDiv = document.getElementById("text-div");
+var canvas          = document.getElementById("canvas");
+var ctx             = canvas.getContext("2d");
+var canvBox         = document.getElementById("canvBox");
+var slider          = document.getElementById("slider");
+var sliderContainer = document.getElementsByClassName("slidecontainer")[0];
+var dropdownButton  = document.getElementById("dropdown-btn");
+var exampleButtons  = document.getElementsByClassName("dropdown-item");
+var toggleButton    = document.getElementById("switch");
+var output          = document.getElementById("output");
+var rightBox        = document.getElementById("column");
+var textDiv         = document.getElementById("text-div");
+var infoButton      = document.getElementById("info");
+var dropdown        = document.getElementById("dropdown");
+var tutorial        = document.getElementById("tutorial");
 
 
 var windowWidth, windowHeight;
@@ -21,6 +25,7 @@ var grid = new Grid(cellSize, canvWidth, canvHeight);
 var lastCell;
 const fps = 10;
 var control = false;
+var infoHidden = false;
 
 
 // BUTTON/INPUT HANDLING
@@ -46,6 +51,8 @@ slider.oninput = function() {
     density = (slider.value / 100 + 1) * 1.5;
     reloadCanvas(grid);
 }
+
+infoButton.addEventListener("click", toggleMobileMenu);
 
 
 // EXAMPLES HANDLER

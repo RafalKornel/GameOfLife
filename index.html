@@ -34,6 +34,14 @@
 
                 <div id="upper">
 
+                    <div class="container">
+                        <div class="toggle-btn" id="switch" onclick="this.classList.toggle('active')">
+                            <div class="inner-circle">
+                            </div>
+                            <p id="output">start</p>
+                        </div>
+                    </div>
+
                     <div class="slidecontainer">
                         <input type="range" min="1" max="100" value="33.34" class="slider" id="slider">
                         <p>density</p>
@@ -58,21 +66,12 @@
                         </div>
                     </div>
 
-
-                    <div class="container">
-                        <div class="toggle-btn" id="switch" onclick="this.classList.toggle('active')">
-                            <div class="inner-circle">
-                            </div>
-                            <p id="output">start</p>
-                        </div>
-                    </div>
-
                     <p id="tutorial">how does it work? click on cells to make them active, or 
                                      select existing preset, then click button above and watch
                                      simulation! </p>
 
                     <div id="info">
-                        <button> i </button>
+                        <button class="active"> i </button>
                     </div>
 
                 </div>

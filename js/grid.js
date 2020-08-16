@@ -17,8 +17,6 @@ class Grid {
         this.xDiam = Math.floor(this.w / size);
         this.yDiam = Math.floor(this.h / size);
 
-        //console.log(this.xDiam, this.yDiam);
-        //  console.log(w, h);
 
         let res = [];
 
@@ -46,7 +44,6 @@ class Grid {
                 if (obj[j][i] == undefined) { break; }
                 let status = obj[j][i] == 1 ? "active" : "idle";
                 this.cells[j][i].status = status;
-                //new Cell(i * size, j * size, size, size, "idle", i, j));
             }
         }
     }   
@@ -90,9 +87,6 @@ class Grid {
         let i = Math.floor(x / this.cellSize);
         let j = Math.floor(y / this.cellSize);
 
-        //console.log(calcX, calcY);
-
-        //console.log(this.cells[j][i])
         return this.cells[j][i];
     }
 
@@ -109,7 +103,7 @@ class Grid {
         for (let j = 0; j < this.yDiam; j++) {
             for (let i = 0; i < this.xDiam; i++) {
                 let e = this.cells[j][i];
-                //console.log(e);
+
                 if (e.status == "hover") {
                     e.status == "idle";
                 }

@@ -13,8 +13,6 @@ function getMousePos(e) {
         mouseY = e.layerY * scaleY;
     }
 
-    //console.log(mouseX, mouseY);
-
     return [mouseX, mouseY];
     // correctly determines position of mouse
 };
@@ -47,7 +45,7 @@ function removeHighlight(e) {
         lastCell.status = "idle";
         lastCell.updateColor();
     }
-    //console.log(lastCell);
+
     draw();
 
 }
@@ -63,7 +61,6 @@ function changeStatus(e) {
 
     cell.updateColor();
     draw();
-    //console.log(grid);
 };
 
 
@@ -71,7 +68,6 @@ function reloadCanvas(grid) {
     windowWidth = canvBox.offsetWidth;
     windowHeight = canvBox.offsetHeight;
 
-    //console.log(windowWidth, windowHeight, windowHeight*windowWidth);
 
     if (windowWidth * windowHeight > 4e6) {
         windowWidth *= 0.75;    // very nasty hack to prevent
@@ -84,12 +80,36 @@ function reloadCanvas(grid) {
     ctx.canvas.width = canvWidth;
     ctx.canvas.height = canvHeight;
 
-    //console.log(density);
-
     grid.w = canvWidth;
     grid.h = canvHeight;
     grid.initialize();
     draw();
+}
+
+function toggleMobileMenu() {
+
+    if (infoHidden) {
+        rightBox.children["lower"].style.display = "flex";
+        rightBox.style.background = "rgba(65, 65, 65, 0.5)";
+        rightBox.style.display = "flex";
+        dropdown.style.display = "flex";
+        sliderContainer.style.display = "block";
+        tutorial.style.display = "block";
+        dropdown.classList.remove("dropleft")
+
+    }
+    else {
+        rightBox.children["lower"].style.display = "none";
+        rightBox.style.background = "transparent";
+        rightBox.style.display = "block";
+        dropdown.style.display = "none";
+        sliderContainer.style.display = "none";
+        tutorial.style.display = "none"
+        dropdown.classList.add("dropleft")
+
+    }
+
+    infoHidden = infoHidden == true ? false : true; // switches state
 }
 
 
@@ -101,30 +121,23 @@ var stop = function () {
     canvas.addEventListener("click", changeStatus);
     if (window.matchMedia("(min-width: 768px)").matches) {
         rightBox.style.background = "rgba(250, 26, 13, 0.7)";
-        textDiv.style.background = "rgba(250, 26, 13, 0.2)";
-        textDiv.style.scrollbarColor = "rgba(250, 26, 13, 1) transparent";
-    }
-    else {
-        rightBox.style.background = "transparent";
     }
 }
 
 var start = function () {
     control = true;
     output.innerHTML = "running";
-    console.log("running");
     canvas.removeEventListener("mousemove", highlight);
     canvas.removeEventListener("mouseout", removeHighlight);
     canvas.removeEventListener("click", changeStatus);
 
     if (window.matchMedia("(min-width: 768px)").matches) {
         rightBox.style.background = "rgba(171, 206, 48, 0.7)";
-        textDiv.style.background = "rgba(171, 206, 48, 0.2)";
-        textDiv.style.scrollbarColor = "rgba(171, 206, 48, 1) transparent";
     }
-    else {
-        rightBox.style.background = "transparent";
-    }
+    else if (window.matchMedia("(max-width: 768px)").matches && 
+             !infoHidden ) {
+            toggleMobileMenu();
+        }
 
     examples["backup"] = grid.exportToJson();
     step();

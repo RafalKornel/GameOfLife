@@ -17,7 +17,6 @@ class Cell {
         else if (this.status == "hover")    { this.color = "rgba(6,97,54, 0.5)"; }
         else if (this.status == "active")   { this.color = "rgba(6,97,54, 1.0)"; }
         else                                { this.color = "white"; }
-        //this.color = this.status ?  : "black";
     }
 
     switch() {
