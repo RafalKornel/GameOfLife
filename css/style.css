@@ -249,6 +249,7 @@ button {
   .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
+    border: none;
     width: 100%; /* Full-width */
     height: 40px; /* Specified height */
     background: rgb(237, 237, 237); /* Grey background */
