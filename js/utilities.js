@@ -92,6 +92,7 @@ function toggleMobileMenu() {
         rightBox.children["lower"].style.display = "flex";
         rightBox.style.background = "rgba(65, 65, 65, 0.5)";
         rightBox.style.display = "flex";
+        rightBox.style.height  = "100%";
         dropdown.style.display = "flex";
         sliderContainer.style.display = "block";
         tutorial.style.display = "block";
@@ -102,6 +103,7 @@ function toggleMobileMenu() {
         rightBox.children["lower"].style.display = "none";
         rightBox.style.background = "transparent";
         rightBox.style.display = "block";
+        rightBox.style.height  = "auto";
         dropdown.style.display = "none";
         sliderContainer.style.display = "none";
         tutorial.style.display = "none"
