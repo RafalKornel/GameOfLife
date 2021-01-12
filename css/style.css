@@ -8,6 +8,7 @@ body {
 main {
     width: 100%;
     height: 100%;
+    transition: all 400ms ease;
 }
 
 canvas {
@@ -183,7 +184,7 @@ button {
     left: 50%;
     width: 150px;
     height: 40px;
-    background: rgba(250, 26, 13, 1.0);
+    background: white;
     border-radius: 30px;
     padding: 5px;
     transition: all 300ms ease-in-out;
@@ -199,22 +200,20 @@ button {
     position: relative;
     top: -27px;
     transition: all 300ms ease-in-out;
-}
-
-.toggle-btn.active > p {
-    color: white;
+    font-weight: bold;
+    user-select: none;
 }
 
 .toggle-btn > .inner-circle {
     width: 30px;
     height: 30px;
-    background: white;
+    background: rgb(95, 95, 95);
     border-radius: 50%;
     transition: all 300ms ease-in-out;
 }
 
 .toggle-btn.active {
-    background: rgba(171, 206, 48, 1.0);
+    background: rgb(255, 255, 255);
 }
 
 .toggle-btn.active > .inner-circle {
@@ -327,6 +326,7 @@ button {
     max-height: 100%;
     overflow: scroll;
     padding: 3% 3%;
+    overflow-x: hidden;
 }
 
 #text-div > h1 {
